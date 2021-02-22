@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en-us">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="themecolor" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+   <title>Image Board</title>
+  </head>
+  <body>
+    <canvas id="panel"></canvas>
+    
+    
+    <ul class="nav justify-content-center">
+      <li class="nav-item">
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            File
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+            <li><a class="dropdown-item" href="Pages/Signin.html">Import Image</a></li>
+            <li id="clear_p"><a class="dropdown-item" href="#">Clear</a></li>
+            <li><a class="dropdown-item" href="#">Preference</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Save</a></li>
+            <li><a class="dropdown-item" href="#">New</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            Edit
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+            <li><a class="dropdown-item" href="#">Effects</a></li>
+            <li><a class="dropdown-item" href="#">Crop</a></li>
+            <li><a class="dropdown-item" href="#">Guides</a></li>
+            <li><a class="dropdown-item" href="#">Text</a></li>
+            <li><a class="dropdown-item" href="#">Clear</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            Pen
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+            <li><a class="dropdown-item" href="#" onclick="pencil_props()">Primary Pencil</a></li>
+            <li><a class="dropdown-item" href="#">Marker</a></li>
+            <li><a class="dropdown-item" href="#">Ink Pen</a></li>
+            <li><a class="dropdown-item" href="#">Caryon</a></li>
+            <li><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#linewidthModal" >Pen size</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <div class="dropdown">
+          <button class="btn btn-outline-secondary dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            Colour
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton2">
+            <li id="chback"><a class="dropdown-item" href="#">Background Colour</a></li>
+            <li data-bs-toggle="modal" data-bs-target="#color-picker"><a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#ColorforpenModal">Pen Colour</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li id="reset_clr"><a class="dropdown-item" href="#">Reset</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
+  
+<!-- Button trigger modal 
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#linewidthModal">
+  Launch demo modal
+</button>
+-->
+
+<!-- Modal -->
+<div class="modal fade" id="ColorforpenModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ColorforpenModalLabel">Colour-Picker</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <div class="modal-body">
+          <center>
+          <div class="color_preview" id="clr_prv" >
+            <!--None-->
+          </div>
+          </center>
+          <label for="h">H</label>
+          <input type="range" class="form-range" name="H" id="H" value="15" min="0" max="345" onchange="prv()" />
+          <label for="S">S</label>
+          <input type="range" class="form-range" name="S" id="S" value="100" min="0" max="100" onchange="prv()" />
+          <label for="L">L</label>
+          <input type="range" class="form-range" name="L" id="L" value="50" min="0" max="100" onchange="prv()" />
+        </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="v_changed()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="linewidthModal" tabindex="-1" aria-labelledby="linewidthLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ColorforpenModalLabel">Select Pen Size</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            
+            <label for="LineWidth">Line Width</label>
+            <input type="range" class="form-range" name="LineWidth" id="LineWidth" min="0" max="100" onchange="prv()" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="line_width_change()">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Optional JavaScript; choose one of the two! -->
+    
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+    -->
+    <script src="main.js"></script>
+  </body>
+</html>
