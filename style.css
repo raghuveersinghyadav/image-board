@@ -1,0 +1,42 @@
+
+
+
+body {
+  font-size: 15pt;
+  margin: 0px;
+  padding-top: 0px;
+}
+
+#panel {
+  border: 2px solid black;
+  cursor: pointer;
+}
+
+#options {
+  justify-content: center;
+}
+.color_preview {
+  justify-content: center;
+  border-radius: 50px;
+  width: 100px;
+  height: 100px;
+  background-color: hsl(15,100%,50%);
+  border: 2px solid #fff;
+}
+.form-color {
+  width: 100px;
+  height: 100px;
+  background-color: white;
+}
+#H {
+  border-radius: 20px;
+  background-image: linear-gradient(to right,hsl(0,100%,50%),hsl(10,100%,50%),hsl(20,100%,50%),hsl(30,100%,50%),hsl(40,100%,50%),hsl(50,100%,50%),hsl(60,100%,50%),hsl(70,100%,50%),hsl(80,100%,50%),hsl(90,100%,50%),hsl(100,100%,50%),hsl(110,100%,50%),hsl(120,100%,50%),hsl(130,100%,50%),hsl(140,100%,50%),hsl(150,100%,50%),hsl(160,100%,50%),
+  hsl(170,100%,50%),hsl(186,100%,50%),hsl(190,100%,50%),hsl(200,100%,50%),hsl(210,100%,50%),hsl(220,100%,50%),hsl(230,100%,50%),hsl(240,100%,50%),hsl(250,100%,50%),hsl(260,100%,50%),
+  hsl(270,100%,50%),hsl(280,100%,50%),hsl(290,100%,50%),hsl(300,100%,50%),hsl(310,100%,50%),hsl(320,100%,50%),hsl(330,100%,50%),hsl(340,100%,50%),hsl(345,100%,50%));
+}
+#S {
+  border-radius: 20px;
+}
+#L {
+  border-radius: 20px;
+}
