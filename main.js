@@ -7,7 +7,7 @@ var pencil = {
 var lineWidthselector = document.getElementById("LineWidth");
 lineWidthselector.value = "10";
 var panel = document.getElementById("panel");
-panel.width = window.innerWidth - 2;
+panel.width = window.innerWidth - 5;
 document.body.width = window.innerWidth;
 panel.height = "400"
 var clear_p = document.getElementById("clear_p")
@@ -101,9 +101,13 @@ function moving(ev) {
   var y = ev.touches[0].clientY - pageYOffset;
   p = panel.getContext("2d");
   p.lineCap = "round"
+  x1 = x - 1;
+  y1 = y - 1;
   //p.fillRect(x-(p.lineWidth/2),y-(p.lineWidth/2),p.lineWidth,p.lineWidth)
-  //p.arc(x + Math.cos(Math.random() * Math.PI * 2) * radius * Math.random(),y + Math.sin(Math.random() * Math.PI * 2) * radius * Math.random(),1,0, Math.PI * 2,);
-  //lineThickness = 1 + Math.sqrt((xStart - xEnd) *(xStart-xEnd) + (yStart - yEnd) * (yStart-yEnd))/5;
+  //p.arc(x + Math.cos(Math.random() * Math.PI * 2) * 1 * Math.random(),y + Math.sin(Math.random() * Math.PI * 2) * 1 * Math.random(),1,0, Math.PI * 2,);
+  lineThickness = line_width_change() + Math.sqrt((x1 - x) *(x1-x) + (y1 - y) * (y1 -y))/2;
+  p.lineWidth = lineThickness
+  p.imageSmoothingQuality = "high";
   p.lineTo(x,y);
   //p.beginPath();
   p.stroke();
